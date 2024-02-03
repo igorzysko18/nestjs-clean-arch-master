@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker'
 import { UserEntity, UserProps } from '../../user.entity'
 import { UserDataBuilder } from '@/users/domain/testing/helpers/user-data-builder'
 
