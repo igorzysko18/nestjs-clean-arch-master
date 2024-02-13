@@ -5,9 +5,9 @@ export type SortDirection = 'asc' | 'desc'
 
 export type SearchProps<Filter = string> = {
   page?: number
-  perpage?: number
+  perPage?: number
   sort?: string | null
-  sortDir: SortDirection | null
+  sortDir?: SortDirection | null
   filter?: Filter | null
 }
 
@@ -18,12 +18,12 @@ export class SearchParams {
   protected _sortDir: SortDirection | null
   protected _filter: string | null
 
-  constructor(public props: SearchProps) {
-    this._page = props.page
-    this._perPage = props.perpage
-    this._sort = props.sort
-    this._sortDir = props.sortDir
-    this._filter = props.filter
+  constructor(public props: SearchProps = {}) {
+    this.page = props.page
+    this.perPage = props.perPage
+    this.sort = props.sort
+    this.sortDir = props.sortDir
+    this.filter = props.filter
   }
 
   get page() {
@@ -42,7 +42,7 @@ export class SearchParams {
     return this._perPage
   }
   private set perPage(value: number) {
-    let _perPage = +value
+    let _perPage = value === (true as any) ? this._perPage : +value
     if (
       Number.isNaN(_perPage) ||
       _perPage <= 0 ||
